@@ -2,6 +2,35 @@ syntax = "proto3";
 
 package RocketryProto;
 
+enum EventTypes
+{
+    RESET = 0;
+    SERVO_INIT = 1;
+    SERVO_CONTROL = 2;
+    DIGITAL_INIT = 3;
+    DIGITAL_CONTROL = 4;
+}
+
+enum ErrorTypes
+{
+    DECODE_ERROR = 0;
+    UNKNOWN_MESSAGE = 1;
+    PIN_NOT_INITIALIZED = 2;
+}
+
+message EventMessage
+{
+    EventTypes type = 1;
+    int32 data = 2;
+}
+
+
+message ErrorMessage
+{
+    ErrorTypes type = 1;
+    int32 data = 2;
+}
+
 message ServoInit
 {
     uint32 pin = 1;
@@ -38,5 +67,14 @@ message ArduinoIn
         DigitalInit digitalInit = 3;
         DigitalControl digitalControl = 4;
         Reset reset = 5;
+    }
+}
+
+message ArduinoOut
+{
+    oneof data
+    {
+        EventMessage eventMessage = 1;
+        ErrorMessage errorMessage = 2;
     }
 }
