@@ -24,11 +24,22 @@ message EventMessage
     int32 data = 2;
 }
 
-
 message ErrorMessage
 {
     ErrorTypes type = 1;
     int32 data = 2;
+}
+
+message ServoState
+{
+    uint32 pin = 1;
+    int32 position = 2;
+}
+
+message DigitalState
+{
+    uint32 pin = 1;
+    bool activated = 2;
 }
 
 message ServoInit
@@ -76,5 +87,7 @@ message ArduinoOut
     {
         EventMessage eventMessage = 1;
         ErrorMessage errorMessage = 2;
+        ServoState servoState = 3;
+        DigitalState digitalState = 4;
     }
 }
