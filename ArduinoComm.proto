@@ -19,6 +19,7 @@ enum ErrorTypes
     DECODE_ERROR = 0;
     UNKNOWN_MESSAGE = 1;
     PIN_NOT_INITIALIZED = 2;
+    OUT_OF_PINS = 3;
 }
 
 message EventMessage
