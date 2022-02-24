@@ -2,13 +2,16 @@ syntax = "proto3";
 
 package RocketryProto;
 
+// ArduinoOut Messages
+
 enum EventTypes
 {
     RESET = 0;
-    SERVO_INIT = 1;
-    SERVO_CONTROL = 2;
-    DIGITAL_INIT = 3;
-    DIGITAL_CONTROL = 4;
+    SERVO_OUTPUT_INIT = 1;
+    SERVO_OUTPUT_CONTROL = 2;
+    DIGITAL_OUTPUT_INIT = 3;
+    DIGITAL_OUTPUT_CONTROL = 4;
+    ANALOG_INPUT_INIT = 5;
 }
 
 enum ErrorTypes
@@ -30,36 +33,57 @@ message ErrorMessage
     int32 data = 2;
 }
 
-message ServoState
+message ServoOutputState
 {
     uint32 pin = 1;
     int32 position = 2;
 }
 
-message DigitalState
+message DigitalOutputState
 {
     uint32 pin = 1;
     bool activated = 2;
 }
 
-message ServoInit
+message AnalogInputState
+{
+    uint32 pin = 1;
+    uint32 value = 2;
+}
+
+message ArduinoOut
+{
+    oneof data
+    {
+        EventMessage eventMessage = 1;
+        ErrorMessage errorMessage = 2;
+        ServoOutputState servoOutputState = 3;
+        DigitalOutputState digitalOutputState = 4;
+        AnalogInputState analogInputState = 6;
+    }
+}
+
+
+// ArduinoIn Messages
+
+message ServoOutputInit
 {
     uint32 pin = 1;
     int32 safePosition = 2;
 }
 
-message ServoControl
+message ServoOutputControl
 {
     uint32 pin = 1;
     int32 position = 2;
 }
 
-message DigitalInit
+message DigitalOutputInit
 {
     uint32 pin = 1;
 }
 
-message DigitalControl
+message DigitalOutputControl
 {
     uint32 pin = 1;
     bool activate = 2;
@@ -69,25 +93,22 @@ message Reset
 {
 }
 
+message AnalogInputInit
+{
+    uint32 pin = 1;
+    uint32 updateIntervalMilli = 2;
+    bool hasPullUp = 3;
+}
+
 message ArduinoIn
 {
     oneof data
     {
-        ServoInit servoInit = 1;
-        ServoControl servoControl = 2;
-        DigitalInit digitalInit = 3;
-        DigitalControl digitalControl = 4;
+        ServoOutputInit servoOutputInit = 1;
+        ServoOutputControl servoOutputControl = 2;
+        DigitalOutputInit digitalOutputInit = 3;
+        DigitalOutputControl digitalOutputControl = 4;
         Reset reset = 5;
-    }
-}
-
-message ArduinoOut
-{
-    oneof data
-    {
-        EventMessage eventMessage = 1;
-        ErrorMessage errorMessage = 2;
-        ServoState servoState = 3;
-        DigitalState digitalState = 4;
+        AnalogInputInit analogInputInit = 6;
     }
 }
