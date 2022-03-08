@@ -1,0 +1,11 @@
+syntax = "proto3";
+
+package RocketryProto;
+
+message GroundStationIn {
+  string sensorsData = 1;
+};
+
+message GroundStationOut {
+  uint32 data = 1;
+};
