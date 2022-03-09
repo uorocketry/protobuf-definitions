@@ -2,8 +2,26 @@ syntax = "proto3";
 
 package RocketryProto;
 
+message LoggingMessage {
+  enum LogLevel {
+    TRACE = 0;
+    DEBUG = 1;
+    INFO = 2;
+    WARN = 3;
+    ERROR = 4;
+    CRITICAL = 5;
+  }
+
+  string log = 1;
+  LogLevel level = 2;
+  string source = 3;
+}
+
 message GroundStationIn {
-  string sensorsData = 1;
+  oneof data {
+    string sensorsData = 1;
+    LoggingMessage loggingMessage = 2;
+  }
 };
 
 message GroundStationOut {
