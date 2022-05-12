@@ -1,0 +1,6 @@
+<?xml version="1.0"?>
+<mavlink>
+    <include>common.xml</include>
+    <enums></enums>
+    <messages></messages>
+</mavlink>
