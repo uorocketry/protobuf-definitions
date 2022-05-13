@@ -1,6 +1,27 @@
 <?xml version="1.0"?>
 <mavlink>
     <include>common.xml</include>
+    <dialect>9</dialect>
     <enums></enums>
-    <messages></messages>
+    <messages>
+        <message id="50000" name="HOTFIRE_STATE">
+            <description>Hotfire State</description>
+            <field type="uint64_t" name="timestamp" units="ms">The timestamp. This is from a monotonic clock, so may be
+                different from the current UTC time.
+            </field>
+            <field type="uint16_t" name="current_state">Current state of the State Machine</field>
+            <field type="int16_t" name="heater_target">Heater Target</field>
+            <field type="int16_t" name="filling_valve_target">Filling Valve Target</field>
+            <field type="int16_t" name="main_valve_target">Main Valve Target</field>
+            <field type="int16_t" name="fill_cart_venting_valve_target">Fill Cart Venting Valve Target</field>
+            <field type="int16_t" name="pinhole_venting_valve_target">Valve Filling Target</field>
+            <field type="int16_t" name="heater_state">Heater State</field>
+            <field type="int16_t" name="filling_valve_state">Filling Valve State</field>
+            <field type="int16_t" name="main_valve_state">Main Valve State</field>
+            <field type="int16_t" name="fill_cart_venting_valve_state">Fill Cart Venting Valve State</field>
+            <field type="int16_t" name="pinhole_venting_valve_state">Valve Filling State</field>
+            <field type="uint8_t" name="log_status">Log Status</field>
+            <field type="float" name="temperature">Temperature</field>
+        </message>
+    </messages>
 </mavlink>
