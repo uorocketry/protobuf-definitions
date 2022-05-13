@@ -23,5 +23,11 @@
             <field type="uint8_t" name="log_status">Log Status</field>
             <field type="float" name="temperature">Temperature</field>
         </message>
+        <message id="50001" name="LOG_MESSAGE">
+            <description>A logging message.</description>
+            <field type="uint8_t" name="severity" enum="MAV_SEVERITY">Severity of the message</field>
+            <field type="uint8_t" name="length">The length of the log contained in data</field>
+            <field type="uint8_t[90]" name="data">The actual log</field>
+        </message>
     </messages>
 </mavlink>
