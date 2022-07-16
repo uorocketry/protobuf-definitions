@@ -9,6 +9,8 @@ enum EventTypes
     SERVO_CONTROL = 2;
     DIGITAL_INIT = 3;
     DIGITAL_CONTROL = 4;
+    DC_MOTOR_INIT = 5;
+    DC_MOTOR_CONTROL = 6;
 }
 
 enum ErrorTypes
@@ -42,6 +44,12 @@ message DigitalState
     bool activated = 2;
 }
 
+message DCMotorState
+{
+    uint32 pin = 1;
+    int32 position = 2;
+}
+
 message ServoInit
 {
     uint32 pin = 1;
@@ -65,6 +73,21 @@ message DigitalControl
     bool activate = 2;
 }
 
+
+message DCMotorInit
+{
+    uint32 limitSwitchMinPin = 1;
+    uint32 limitSwitchMaxPin = 2;
+    uint32 potentiometerPin = 3;
+    uint32 motorPin = 4;
+}
+
+message DCMotorControl
+{
+    uint32 pin = 1;
+    int32 position = 2;
+}
+
 message Reset
 {
 }
@@ -77,6 +100,8 @@ message ArduinoIn
         ServoControl servoControl = 2;
         DigitalInit digitalInit = 3;
         DigitalControl digitalControl = 4;
+        DCMotorInit dcMotorInit = 6;
+        DCMotorControl dcMotorControl = 7;
         Reset reset = 5;
     }
 }
@@ -89,5 +114,6 @@ message ArduinoOut
         ErrorMessage errorMessage = 2;
         ServoState servoState = 3;
         DigitalState digitalState = 4;
+        DCMotorState dcMotorState = 5;
     }
 }
