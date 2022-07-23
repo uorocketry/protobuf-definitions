@@ -49,7 +49,7 @@ message DCMotorState
     uint32 motorForwardPin = 1;
     uint32 motorReversePin = 2;
     int32 position = 3;
-    uint32 direction = 4;
+    int32 direction = 4;
 }
 
 message ServoInit
