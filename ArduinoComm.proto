@@ -50,6 +50,8 @@ message DCMotorState
     uint32 motorReversePin = 2;
     int32 position = 3;
     int32 direction = 4;
+    bool minLimitSwitch = 5;
+    bool maxLimitSwitch = 6;
 }
 
 message ServoInit
