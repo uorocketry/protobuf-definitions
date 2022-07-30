@@ -69,6 +69,7 @@ message ServoControl
 message DigitalInit
 {
     uint32 pin = 1;
+    uint32 safeState = 2;
 }
 
 message DigitalControl
