@@ -38,6 +38,11 @@ message ServoState
     int32 position = 2;
 }
 
+message LoadCellState
+{
+    uint32 value = 1;
+}
+
 message DigitalState
 {
     uint32 pin = 1;
@@ -140,5 +145,6 @@ message ArduinoOut
         DigitalState digitalState = 4;
         DCMotorState dcMotorState = 5;
         StepperMotorState stepperMotorState = 6;
+        LoadCellState loadCellState = 7;
     }
 }
